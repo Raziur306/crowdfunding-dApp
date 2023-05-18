@@ -1,14 +1,14 @@
 import type { AppProps } from "next/app";
-import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react";
+import { ThirdwebProvider } from "@thirdweb-dev/react";
+import { Sepolia } from "@thirdweb-dev/chains";
 import "../styles/globals.css";
 import theme from '../styles/theme'
 import { ThemeProvider } from "@emotion/react";
 
-const activeChain = ChainId.Mumbai
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
-    <ThirdwebProvider activeChain={activeChain}>
+    <ThirdwebProvider activeChain={Sepolia}>
       <ThemeProvider theme={theme}>
         <Component {...pageProps} />
       </ThemeProvider>
