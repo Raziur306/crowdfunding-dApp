@@ -8,28 +8,34 @@ export const sideBarItems = [
     {
         title: "Dashboard",
         icon: DashboardOutlinedIcon,
+        route: '/'
     },
     {
         title: "Campain",
         icon: CampaignOutlinedIcon,
+        route: '/campain'
     }
     ,
     {
         title: "Payment",
         icon: LocalAtmOutlinedIcon,
+        route: '/payment'
     }
     ,
     {
         title: "Transaction",
         icon: PaymentsOutlinedIcon,
+        route: '/transaction'
     }
     ,
     {
         title: "Profile",
         icon: AccountCircleOutlinedIcon,
+        route: '/profile'
     },
     {
         title: "Logout",
         icon: LogoutOutlinedIcon,
+        route: ''
     }
 ]

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Box, Button, Drawer, InputBase, MenuItem, IconButton } from '@mui/material';
-import theme from "../styles/theme";
+import theme from "./theme";
 
 
 //icons button
@@ -78,4 +78,12 @@ export const StyledCamapinBtn = styled(Button)({
     }
 
 });
+
+
+export const StyledAppbarBox = styled(Box)({
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+})
 

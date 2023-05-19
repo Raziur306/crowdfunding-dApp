@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, CardMedia, CardContent, Box, Typography, Avatar } from '@mui/material';
 import FolderOutlinedIcon from '@mui/icons-material/FolderOutlined';
-import { StyledCard, StyledCardContent, StyledCardMedia, StyledInfoSectionBox, StyledOwnerBox, StyledTypeBox } from './campainStyle';
+import { StyledCard, StyledCardContent, StyledCardMedia, StyledInfoSectionBox, StyledOwnerBox, StyledTypeBox } from '../styles/campainStyles';
 
 
 function CampainCard() {

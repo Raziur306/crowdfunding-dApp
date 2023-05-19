@@ -10,6 +10,39 @@ function Campains() {
                 <Grid item>
                     <CampainCard />
                 </Grid>
+                <Grid item>
+                    <CampainCard />
+                </Grid>
+                <Grid item>
+                    <CampainCard />
+                </Grid>
+                <Grid item>
+                    <CampainCard />
+                </Grid>
+                <Grid item>
+                    <CampainCard />
+                </Grid>
+                <Grid item>
+                    <CampainCard />
+                </Grid>
+                <Grid item>
+                    <CampainCard />
+                </Grid>
+                <Grid item>
+                    <CampainCard />
+                </Grid>
+                <Grid item>
+                    <CampainCard />
+                </Grid>
+                <Grid item>
+                    <CampainCard />
+                </Grid>
+                <Grid item>
+                    <CampainCard />
+                </Grid>
+                <Grid item>
+                    <CampainCard />
+                </Grid>
             </Grid>
         </Box >
     )

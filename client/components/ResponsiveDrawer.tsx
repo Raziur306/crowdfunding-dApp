@@ -1,36 +1,32 @@
 import { AppBar, Box, CssBaseline, useMediaQuery, IconButton, List, Toolbar } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import MenuIcon from '@mui/icons-material/Menu'
-import { StyledCustomDrawer } from '../components/drawerStyle';
+import { StyledCustomDrawer } from '../styles/drawerStyles';
 import theme from '../styles/theme';
 import SideBarItems from './SideBarItems';
 import AppBarItem from './AppBarItem';
+import { ContractContext } from '../context/ContractContext';
 
 
-
-
-interface Props {
-    children: React.ReactNode;
-    onDrawerSelected: Function;
+interface PropsType {
+    children: React.ReactNode
 }
-
-
-const ResponsiveDrawer = (props: Props) => {
+const ResponsiveDrawer = (props: PropsType) => {
     const { children } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
-    const [extendedMenuState, setExtnededMenuState] = useState(false);
     const drawerWidth = 80;
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
+    const { isWalletConnected } = useContext(ContractContext)
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
 
 
-
-
-
+    if (!isWalletConnected) {
+        return <>{children}</>;
+    }
 
 
     return (<Box sx={{ display: 'flex' }}>
@@ -83,16 +79,12 @@ const ResponsiveDrawer = (props: Props) => {
                 <SideBarItems />
             </StyledCustomDrawer>
         </Box>
+
         <Box
             component="main"
             sx={{ flexGrow: 1, p: 10, width: { sm: `calc(100% - ${drawerWidth}px)` } }}>
             <Toolbar />
-
-            {/* current menu content will be placed here */}
-
             {children}
-
-
         </Box>
     </Box>)
 }

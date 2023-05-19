@@ -1,21 +1,24 @@
 import { Box, Icon, IconButton, List } from '@mui/material'
 import React, { useState } from 'react'
-import { sideBarItems } from '../utils/drawerItem'
-import { StyledMenuItem } from '../components/drawerStyle'
+import { sideBarItems } from '../utils/drawerItems'
+import { StyledMenuItem } from '../styles/drawerStyles'
 import { useDisconnect } from '@thirdweb-dev/react'
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import { useRouter } from 'next/router'
 
 
 const SideBarItems = () => {
   const [selectedMenu, setSelectedMenu] = useState(0);
   const disconnectWallet = useDisconnect();
+  const router = useRouter();
 
   const handleSideBarItemClick = (index: number) => {
     if (index == (sideBarItems.length - 1)) {
       disconnectWallet();
     }
     setSelectedMenu(index);
+    router.push(sideBarItems[index].route)
   }
 
   return (
