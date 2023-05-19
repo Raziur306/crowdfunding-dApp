@@ -1,23 +1,20 @@
 import { Box, Grid } from "@mui/material";
 import type { NextPage } from "next";
 import { ConnectWallet, useConnectionStatus } from "@thirdweb-dev/react";
-import { useEffect } from "react";
-import { useRouter } from "next/router";
+import { Dashboard } from "../components";
+import theme from "../styles/theme";
 
 const Home: NextPage = () => {
-  const connectedStatus = useConnectionStatus();
-  const router = useRouter();
-  useEffect(() => {
-    if (connectedStatus == 'connected') {
-      router.push('/home');
-    }
-  }, [connectedStatus]);
+  const connectionStatus = useConnectionStatus();
 
-  return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+  if (connectionStatus === 'connected') {
+    return <Dashboard />
+  } else {
+    return (<Box sx={{ width: '100%', height: "100vh", display: 'flex', justifyContent: 'center', alignItems: 'center', p: 0 }}>
       <ConnectWallet btnTitle="Connect Wallet" theme="light" />
-    </Box>
-  )
+    </Box>)
+  }
+
 };
 
 export default Home;

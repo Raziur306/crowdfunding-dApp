@@ -10,14 +10,13 @@ import AppBarItem from './AppBarItem';
 
 
 interface Props {
-    window?: () => Window;
     children: React.ReactNode;
     onDrawerSelected: Function;
 }
 
 
 const ResponsiveDrawer = (props: Props) => {
-    const { window, children } = props;
+    const { children } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const [extendedMenuState, setExtnededMenuState] = useState(false);
     const drawerWidth = 80;
