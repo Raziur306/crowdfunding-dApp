@@ -13,7 +13,7 @@ export const StyledBox = styled(Box)({
     flexDirection: 'column',
     justifyItems: 'center',
     background: '#3B4451',
-    gap: 100,
+    gap: 20,
 });
 
 export const StyledTitleTypography = styled(Typography)({
@@ -35,7 +35,7 @@ export const StyledFlexBox = styled(Box)({
 })
 
 export const StyledTextField = styled(TextField)({
-    width: "40vw",
+    width: "100%",
     '& .MuiInputBase-root': {
         color: 'white'
     },
