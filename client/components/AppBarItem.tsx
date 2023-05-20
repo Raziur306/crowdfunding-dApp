@@ -11,7 +11,7 @@ const AppBarItem = () => {
     }
 
     const handleCreateCampainBtnClick = () => {
-        router.push('/createCampain');
+        router.push('/create');
     }
 
 

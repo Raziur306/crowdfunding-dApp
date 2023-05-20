@@ -29,7 +29,7 @@ export const sideBarItems = [
     }
     ,
     {
-        title: "Profile",
+        title: "My Campain",
         icon: AccountCircleOutlinedIcon,
         route: '/profile'
     },
