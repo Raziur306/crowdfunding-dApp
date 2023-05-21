@@ -1,12 +1,13 @@
 import React from 'react'
 import { Box, Typography } from '@mui/material'
+import { StyledBoldTypograpy, StyledCardBox, StyledTypography } from '../styles/detailsStyle'
 
 function DetailInfoCard() {
     return (
-        <Box>
-            <Typography varient="h3" fontWeight={'bold'}>6</Typography>
-            <Typography varient="h3">Day Left</Typography>
-        </Box>
+        <StyledCardBox>
+            <StyledBoldTypograpy variant="h4">6</StyledBoldTypograpy>
+            <StyledTypography>Day Left</StyledTypography>
+        </StyledCardBox>
     )
 }
 
