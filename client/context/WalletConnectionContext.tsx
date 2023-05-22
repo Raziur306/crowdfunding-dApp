@@ -8,10 +8,10 @@ interface ChildrenType {
     children: React.ReactNode
 }
 
-export const ContractContext = createContext({});
+export const WalletConnectionContext = createContext({});
 
 
-export const ContractContextProvider = ({ children }: ChildrenType) => {
+export const WalletConnectionContextProvider = ({ children }: ChildrenType) => {
 
     //checking wallet status
     const [isWalletConnected, setWalletConnectionStatus] = useState(false);
@@ -29,11 +29,9 @@ export const ContractContextProvider = ({ children }: ChildrenType) => {
 
 
 
-
-
-    return <ContractContext.Provider value={{
+    return <WalletConnectionContext.Provider value={{
         isWalletConnected
     }}>
         {children}
-    </ContractContext.Provider>
+    </WalletConnectionContext.Provider>
 }

@@ -5,7 +5,7 @@ import { StyledCustomDrawer } from '../styles/drawerStyles';
 import theme from '../styles/theme';
 import SideBarItems from './SideBarItems';
 import AppBarItem from './AppBarItem';
-import { ContractContext } from '../context/ContractContext';
+import { WalletConnectionContext } from '../context/WalletConnectionContext';
 
 
 interface PropsType {
@@ -17,7 +17,7 @@ const ResponsiveDrawer = (props: PropsType) => {
     const drawerWidth = 80;
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
-    const { isWalletConnected } = useContext(ContractContext)
+    const { isWalletConnected } = useContext(WalletConnectionContext)
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);

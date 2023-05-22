@@ -1,10 +1,24 @@
 import { Box, Typography, alertTitleClasses, TextField, Grid, InputLabel, Input } from '@mui/material'
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { StyledBox, StyledBoxCard, StyledFlexBox, StyledFullWidth, StyledInput, StyledInputLable, StyledLargeTextField, StyledSubmitBtn, StyledTextArea, StyledTextField, StyledTitleTypography } from '../styles/createCampainStyles';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import { WalletConnectionContext } from '../context/WalletConnectionContext';
+import { useRouter } from 'next/router';
 
-function createCampain() {
+function CreateCampain() {
 
+  const { isWalletConnected } = useContext(WalletConnectionContext);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isWalletConnected) {
+      router.push('/')
+    }
+  }, [isWalletConnected])
+
+  if (!isWalletConnected) {
+    return null;
+  }
 
   return (
     <StyledBox>
@@ -46,4 +60,4 @@ function createCampain() {
   )
 }
 
-export default createCampain
+export default CreateCampain

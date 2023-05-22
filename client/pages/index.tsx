@@ -4,10 +4,10 @@ import type { NextPage } from "next";
 import { ConnectWallet, useConnectionStatus } from "@thirdweb-dev/react";
 import { Campains } from "../components";
 import theme from "../styles/theme";
-import { ContractContext } from "../context/ContractContext";
+import { WalletConnectionContext } from "../context/WalletConnectionContext";
 
 const Home: NextPage = () => {
-  const { isWalletConnected } = useContext(ContractContext)
+  const { isWalletConnected } = useContext(WalletConnectionContext)
 
   if (!isWalletConnected) {
     return (<Box sx={{ width: '100%', height: "100vh", display: 'flex', justifyContent: 'center', alignItems: 'center', p: 0 }}>

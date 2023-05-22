@@ -6,7 +6,7 @@ import "../styles/globals.css";
 import theme from '../styles/theme'
 import { ThemeProvider } from "@emotion/react";
 import { ResponsiveDrawer } from "../components";
-import { ContractContext, ContractContextProvider } from "../context/ContractContext";
+import {WalletConnectionContextProvider } from "../context/WalletConnectionContext";
 import { Box } from '@mui/material'
 
 
@@ -15,11 +15,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <ThirdwebProvider activeChain={Sepolia}>
       <ThemeProvider theme={theme}>
-        <ContractContextProvider>
+        <WalletConnectionContextProvider>
           <ResponsiveDrawer >
             <Component {...pageProps} />
           </ResponsiveDrawer>
-        </ContractContextProvider>
+        </WalletConnectionContextProvider>
       </ThemeProvider>
     </ThirdwebProvider>
   );
