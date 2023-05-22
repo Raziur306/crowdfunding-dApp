@@ -10,7 +10,7 @@ const AppBarItem = () => {
         router.push('/profile');
     }
 
-    const handleCreateCampainBtnClick = () => {
+    const handleCreateCampaignBtnClick = () => {
         router.push('/create');
     }
 
@@ -18,12 +18,12 @@ const AppBarItem = () => {
     return (
         <StyledAppbarBox>
             <StyledInputBox>
-                <StyledInputSearch placeholder='Search for campain' />
+                <StyledInputSearch placeholder='Search for campaign' />
                 <StyledSearchIconBtn><SearchIcon /></StyledSearchIconBtn>
             </StyledInputBox>
 
             <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2 }}>
-                <StyledCamapinBtn onClick={handleCreateCampainBtnClick}>Create a Campain</StyledCamapinBtn>
+                <StyledCamapinBtn onClick={handleCreateCampaignBtnClick}>Create a Campain</StyledCamapinBtn>
                 <Avatar sx={{ cursor: 'pointer' }} onClick={handleOnProfileClick} />
             </Box>
 

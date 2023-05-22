@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react'
-import { CampainCard } from '../components'
+import { CampaignCard } from '../components'
 import { Grid, Typography } from '@mui/material'
 import { WalletConnectionContext } from '../context/WalletConnectionContext';
 import { useRouter } from 'next/router';
@@ -20,46 +20,18 @@ function Profile() {
     }
 
 
-
     return (
         <>
-            <Typography sx={{ color: 'white', fontWeight: 'bold', mb: 2 }}>My Campains(8)</Typography>
+            <Typography sx={{ color: 'white', fontWeight: 'bold', mb: 2 }}>My Campaigns(8)</Typography>
             <Grid container spacing={3} sx={{ justifyContent: 'center' }}>
                 <Grid item>
-                    <CampainCard />
+                    <CampaignCard />
                 </Grid>
                 <Grid item>
-                    <CampainCard />
+                    <CampaignCard />
                 </Grid>
                 <Grid item>
-                    <CampainCard />
-                </Grid>
-                <Grid item>
-                    <CampainCard />
-                </Grid>
-                <Grid item>
-                    <CampainCard />
-                </Grid>
-                <Grid item>
-                    <CampainCard />
-                </Grid>
-                <Grid item>
-                    <CampainCard />
-                </Grid>
-                <Grid item>
-                    <CampainCard />
-                </Grid>
-                <Grid item>
-                    <CampainCard />
-                </Grid>
-                <Grid item>
-                    <CampainCard />
-                </Grid>
-                <Grid item>
-                    <CampainCard />
-                </Grid>
-                <Grid item>
-                    <CampainCard />
+                    <CampaignCard />
                 </Grid>
             </Grid>
         </ >

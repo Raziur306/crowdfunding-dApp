@@ -2,22 +2,23 @@
 pragma solidity ^0.8.9;
 
 contract CrowdFunding {
-    struct Campain {
+    struct Campaign {
         address owner;
         string title;
         string description;
         uint256 target;
         uint256 deadline;
-        string image;
         uint256 amountCollected;
-        uint256[] donations;
+        string image;
         address[] donators;
+        uint256[] donations;
     }
 
-    mapping(uint256 => Campain) public campains;
-    uint256 public numberOfCampains = 0;
+    mapping(uint256 => Campaign) public campaigns;
 
-    function createCampain(
+    uint256 public numberOfCampaigns = 0;
+
+    function createCampaign(
         address _owner,
         string memory _title,
         string memory _description,
@@ -25,47 +26,56 @@ contract CrowdFunding {
         uint256 _deadline,
         string memory _image
     ) public returns (uint256) {
-        Campain storage campain = campains[numberOfCampains];
-        require(
-            campain.deadline < block.timestamp,
-            "The deadline shoud be a date in future."
-        );
-        campain.owner = _owner;
-        campain.title = _title;
-        campain.description = _description;
-        campain.target = _target;
-        campain.deadline = _deadline;
-        campain.image = _image;
+        Campaign storage campaign = campaigns[numberOfCampaigns];
 
-        numberOfCampains++;
-        return numberOfCampains;
+        require(
+            campaign.deadline < block.timestamp,
+            "The deadline should be a date in the future."
+        );
+
+        campaign.owner = _owner;
+        campaign.title = _title;
+        campaign.description = _description;
+        campaign.target = _target;
+        campaign.deadline = _deadline;
+        campaign.amountCollected = 0;
+        campaign.image = _image;
+
+        numberOfCampaigns++;
+
+        return numberOfCampaigns - 1;
     }
 
-    function donateToCampain(uint256 _id) public payable {
+    function donateToCampaign(uint256 _id) public payable {
         uint256 amount = msg.value;
-        require(amount < 0, "Amoutn must be grater than 0");
-        Campain storage campain = campains[_id];
-        campain.donators.push(msg.sender);
-        campain.donations.push(amount);
-        (bool sent, ) = payable(campain.owner).call{value: amount}("");
+
+        Campaign storage campaign = campaigns[_id];
+
+        campaign.donators.push(msg.sender);
+        campaign.donations.push(amount);
+
+        (bool sent, ) = payable(campaign.owner).call{value: amount}("");
+
         if (sent) {
-            campain.amountCollected += amount;
+            campaign.amountCollected = campaign.amountCollected + amount;
         }
     }
 
-    function getDonors(
+    function getDonators(
         uint256 _id
     ) public view returns (address[] memory, uint256[] memory) {
-        return (campains[_id].donators, campains[_id].donations);
+        return (campaigns[_id].donators, campaigns[_id].donations);
     }
-    
 
-    function getCampains() public view returns (Campain[] memory) {
-        Campain[] memory allCampains = new Campain[](numberOfCampains);
-        for (uint i = 0; i < numberOfCampains; i++) {
-            Campain storage item = campains[i];
-            allCampains[i] = item;
+    function getCampaigns() public view returns (Campaign[] memory) {
+        Campaign[] memory allCampaigns = new Campaign[](numberOfCampaigns);
+
+        for (uint i = 0; i < numberOfCampaigns; i++) {
+            Campaign storage item = campaigns[i];
+
+            allCampaigns[i] = item;
         }
-        return allCampains;
+
+        return allCampaigns;
     }
 }

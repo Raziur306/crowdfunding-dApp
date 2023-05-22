@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { Box, Grid } from "@mui/material";
 import type { NextPage } from "next";
 import { ConnectWallet, useConnectionStatus } from "@thirdweb-dev/react";
-import { Campains } from "../components";
+import { Campaigns } from "../components";
 import theme from "../styles/theme";
 import { WalletConnectionContext } from "../context/WalletConnectionContext";
 
@@ -14,7 +14,7 @@ const Home: NextPage = () => {
       <ConnectWallet btnTitle="Connect Wallet" theme="light" />
     </Box>)
   } else {
-    return <Campains />
+    return <Campaigns />
   }
 
 };

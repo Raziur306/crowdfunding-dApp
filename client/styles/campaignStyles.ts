@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Card, CardMedia, CardContent, Box } from '@mui/material';
+import { Card, CardMedia, CardContent, Box, Typography } from '@mui/material';
 
 
 
@@ -20,7 +20,7 @@ export const StyledCardMedia = styled(CardMedia)({
 export const StyledCardContent = styled(CardContent)({
     display: 'flex',
     flexDirection: 'column',
-    gap: 1
+    gap: 8
 })
 
 export const StyledTypeBox = styled(Box)({
@@ -43,4 +43,13 @@ export const StyledOwnerBox = styled(Box)({
     color: 'gray',
     justifyContent: 'start',
     overflow: 'hidden'
+});
+
+
+export const StyledTypographyMaxLine = styled(Typography)({
+    display: '-webkit-box',
+    overflow: 'hidden',
+    WebkitBoxOrient: 'vertical',
+    WebkitLineClamp: 1,
+    color: 'gray',
 })

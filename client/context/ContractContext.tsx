@@ -1,4 +1,5 @@
 import { useAddress, useContract, useContractRead, useContractWrite } from "@thirdweb-dev/react";
+import { BigNumber, ethers } from "ethers";
 import React, { ReactNode, createContext, useState } from "react";
 
 
@@ -17,30 +18,30 @@ export const ContractContextProvider = ({ children }: ChildrenType) => {
     const { contract } = useContract(address);
 
 
-    // const { data, isLoading } = useContractRead(contract, "numberOfCampains", [{{ args }}])
 
 
-
-    //create campain
-    const { mutateAsync: createCampain, isLoading: isCreatCamapinLoading } = useContractWrite(contract, "createCampain")
-    const createCampainCall = async (_title: String, _description: String, _deadline: any, _target: number, _image: String) => {
+    //create campaign
+    const { mutateAsync: createCampaign, isLoading: isCreateCampaignLoading } = useContractWrite(contract, "createCampaign");
+    const createCampaignCall = async (_title: String, _description: String, _target: String, _deadline: any, _image: String) => {
+        console.log("Called")
         try {
-            const date = new Date(_deadline).getTime();
-            const data = await createCampain({ args: [_owner, _title, _description, _target, date, _image] });
-            console.info("Number of campains", data);
+
+            const target = ethers.utils.parseEther(_target.toString());
+            const data = await createCampaign({ args: [_owner, _title, _description, target, new Date(_deadline).getTime(), _image] });
+            // console.info("Number of campaigns", data);
         } catch (error) {
-            console.error("contract Create Campain failure", error);
+            console.error("contract Create Campaign failure", error);
         }
     }
 
 
 
-    //donate to campain
-    const { mutateAsync: donateToCampain, isLoading: isDonateLoading } = useContractWrite(contract, "donateToCampain")
-    const donateCampainCall = async (_id: string) => {
+    //donate to campaign
+    const { mutateAsync: donateToCampaign, isLoading: isDonateLoading } = useContractWrite(contract, "donateToCampaign")
+    const donateCampaignCall = async (_id: string) => {
         try {
-            const data = await donateToCampain({ args: [_id] });
-            console.info("contract call successs", data);
+            const data = await donateToCampaign({ args: [_id] });
+            // console.info("contract call successs", data);
         } catch (err) {
             console.error("contract call failure", err);
         }
@@ -48,25 +49,19 @@ export const ContractContextProvider = ({ children }: ChildrenType) => {
 
 
 
-    //get campain donors
-    // const [donors, setDonors] = useState({});
-    // const getDonors = async (_id: String) => {
-    //     try{
+    //read all campaigns
+    const { data: allCampaignsData, isLoading: isCampaignDataLoading } = useContractRead(contract, "getCampaigns")
 
-    //     }
-    //     const { data, isLoading } = useContractRead(contract, "getDonors", [_id])
-    //     if (!isLoading && data) {
-    //         setDonors(data);
-    //     }
-    // }
 
 
 
     return <ContractContext.Provider value={{
-        createCampainCall,
-        isCreatCamapinLoading,
-        donateCampainCall,
+        createCampaignCall,
+        isCreateCampaignLoading,
+        donateCampaignCall,
         isDonateLoading,
+        isCampaignDataLoading,
+        allCampaignsData
     }}>
         {children}
     </ContractContext.Provider>

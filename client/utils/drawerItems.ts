@@ -11,9 +11,9 @@ export const sideBarItems = [
         route: '/'
     },
     {
-        title: "Campain",
+        title: "Campaign",
         icon: CampaignOutlinedIcon,
-        route: '/campain'
+        route: '/campaign'
     }
     ,
     {
@@ -29,11 +29,12 @@ export const sideBarItems = [
     }
     ,
     {
-        title: "My Campain",
+        title: "My Campaign",
         icon: AccountCircleOutlinedIcon,
         route: '/profile'
     },
     {
+        
         title: "Logout",
         icon: LogoutOutlinedIcon,
         route: ''
