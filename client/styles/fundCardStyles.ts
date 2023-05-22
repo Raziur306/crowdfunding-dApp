@@ -1,12 +1,13 @@
 import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/system'
+import theme from './theme';
 
 
 export const StyledBox = styled(Box)({
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'column',
-    gap: 3
+    gap: 3,
 });
 
 export const StyledSubBox = styled(Box)({

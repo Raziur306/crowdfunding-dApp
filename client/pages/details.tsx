@@ -10,37 +10,32 @@ function campainDetails() {
   const url = 'https://media.istockphoto.com/photos/generic-red-suv-on-a-white-background-side-view-picture-id1157655660?b=1&k=20&m=1157655660&s=612x612&w=0&h=ekNZlV17a3wd_yN9PhHXtIabO_zFo4qipCy2AZRpWUI='
   return (
     <Box>
-      <Grid container spacing={2}>
-        <Grid item sm={6} md={8}>
+      <Grid container spacing={5}>
+        <Grid item md={12} lg={6}>
           <StyledImageBox component="img" alt="The Campain" src={url} />
         </Grid>
-        <Grid item>
-          <Grid spacing={5} container>
-            <Grid md={5} item>
+        <Grid lg={6} item md={12} >
+          <Box sx={{ display: 'flex', gap: 6, justifyContent: 'center' , flexDirection: 'column' }}>
+            <StyledFlexColBox>
+              <StyledTitleTypography variant='h5'>Creator</StyledTitleTypography>
+              <StyledFlexRowBox>
+                <Avatar />
+                <StyledFlexColBox sx={{ gap: '0!important' }}>
+                  <StyledAddressTypography>0xdsdfsdfsdfsadfasdfsdf</StyledAddressTypography>
+                  <Typography>10 Campains</Typography>
+                </StyledFlexColBox>
+              </StyledFlexRowBox>
+            </StyledFlexColBox>
+            <StyledFlexRowBox>
               <DetailInfoCard />
-            </Grid>
-            <Grid md={5} item>
               <DetailInfoCard />
-            </Grid>
-            <Grid md={5} item>
               <DetailInfoCard />
-            </Grid>
-          </Grid>
+            </StyledFlexRowBox>
+          </Box>
         </Grid>
       </Grid>
       <Grid spacing={10} container>
-        <Grid xs={7} item >
-          <StyledFlexColBox>
-            <StyledTitleTypography variant='h5'>Creator</StyledTitleTypography>
-            <StyledFlexRowBox>
-              <Avatar />
-              <StyledFlexColBox sx={{ gap: '0!important' }}>
-                <StyledAddressTypography>0xdsdfsdfsdfsadfasdfsdf</StyledAddressTypography>
-                <Typography>10 Campains</Typography>
-              </StyledFlexColBox>
-            </StyledFlexRowBox>
-          </StyledFlexColBox>
-
+        <Grid lg={10} xl={7} item >
 
           <StyledFlexColBox >
             <StyledTitleTypography variant='h5'>Story</StyledTitleTypography>
@@ -59,11 +54,11 @@ function campainDetails() {
 
 
         </Grid>
-        <Grid xs={3} item >
+        <Grid lg={10} xl={3} item >
           <FundCard />
         </Grid>
       </Grid>
-    </Box>
+    </Box >
   )
 }
 
