@@ -28,7 +28,7 @@ function Profile() {
 
     return (
         <>
-            <Typography sx={{ color: 'white', fontWeight: 'bold', mb: 2 }}>My Campaigns(8)</Typography>
+            <Typography sx={{ color: 'white', fontWeight: 'bold', mb: 2 }}>My Campaigns({userCampaign.length})</Typography>
             <Grid container spacing={3} sx={{ justifyContent: 'center' }}>
                 {
                     userCampaign.map((campaign, index) => {
