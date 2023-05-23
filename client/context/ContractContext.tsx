@@ -76,7 +76,10 @@ export const ContractContextProvider = ({ children }: ChildrenType) => {
         const filteredCampaign = [];
         for (let i = 0; i < allCampaignsData?.length; i++) {
             if (allCampaignsData?.[i].owner == _owner) {
-                filteredCampaign.push(allCampaignsData?.[i])
+                filteredCampaign.push({
+                    id: i,
+                    data: allCampaignsData?.[i]
+                })
             }
         }
         setUserCampaign(filteredCampaign);
