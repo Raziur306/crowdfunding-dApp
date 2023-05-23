@@ -1,6 +1,6 @@
 import { useAddress, useContract, useContractRead, useContractWrite } from "@thirdweb-dev/react";
 import { BigNumber, ethers } from "ethers";
-import React, { ReactNode, createContext, useState } from "react";
+import React, { ReactNode, createContext, useEffect, useState } from "react";
 
 
 
@@ -13,10 +13,11 @@ interface ChildrenType {
 
 export const ContractContextProvider = ({ children }: ChildrenType) => {
     const _owner = useAddress();
-
+    const [campaignId, setCampaignId] = useState('');
     const address = process.env.NEXT_PUBLIC_CONTRACT_KEY;
     const { contract } = useContract(address);
-
+    const [donatationData, setDonationData] = useState(Array);
+    const [userCampaign, setUserCampaign] = useState(Array);
 
 
 
@@ -37,10 +38,10 @@ export const ContractContextProvider = ({ children }: ChildrenType) => {
 
 
     //donate to campaign
-    const { mutateAsync: donateToCampaign, isLoading: isDonateLoading } = useContractWrite(contract, "donateToCampaign")
-    const donateCampaignCall = async (_id: string) => {
+    const { mutateAsync: donateToCampaign, isLoading: isDonateLoading } = useContractWrite(contract, "donateToCampaign",)
+    const donateCampaignCall = async (_id: string, donateAmount: String) => {
         try {
-            const data = await donateToCampaign({ args: [_id] });
+            const data = await donateToCampaign({ args: [_id], overrides: { value: ethers.utils.parseEther(donateAmount.toString()) } });
             // console.info("contract call successs", data);
         } catch (err) {
             console.error("contract call failure", err);
@@ -53,6 +54,37 @@ export const ContractContextProvider = ({ children }: ChildrenType) => {
     const { data: allCampaignsData, isLoading: isCampaignDataLoading } = useContractRead(contract, "getCampaigns")
 
 
+    //get donators
+    const { data: donatorsData, isLoading: isDonatorsDataLoading } = useContractRead(contract, "getDonators", [campaignId])
+
+
+    useEffect(() => {
+        const parsedDonations = [];
+        for (let i = 0; i < donatorsData?.[0].length; i++) {
+            parsedDonations.push({
+                donator: donatorsData[0][i],
+                donation: ethers.utils.formatEther(donatorsData[1][i].toString())
+            })
+        }
+        setDonationData(parsedDonations);
+    }, [donatorsData])
+
+
+
+
+    useEffect(() => {
+        const filteredCampaign = [];
+        for (let i = 0; i < allCampaignsData?.length; i++) {
+            if (allCampaignsData?.[i].owner == _owner) {
+                filteredCampaign.push(allCampaignsData?.[i])
+            }
+        }
+        setUserCampaign(filteredCampaign);
+
+    }, [allCampaignsData])
+
+
+
 
 
     return <ContractContext.Provider value={{
@@ -61,7 +93,11 @@ export const ContractContextProvider = ({ children }: ChildrenType) => {
         donateCampaignCall,
         isDonateLoading,
         isCampaignDataLoading,
-        allCampaignsData
+        allCampaignsData,
+        setCampaignId,
+        isDonatorsDataLoading,
+        donatationData,
+        userCampaign
     }}>
         {children}
     </ContractContext.Provider>
